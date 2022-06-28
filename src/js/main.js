@@ -9,5 +9,4 @@ do {
     let mult = input * i;
     console.log(`${input} x ${i} = ${mult}`);
   };
-  input;
 } while (isNaN(input));
