@@ -1,4 +1,13 @@
-let num = 20
-let string = "Hello world!"
+do {
+  let input = parseFloat(prompt('Ingrese un número para conocer su tabla multiplicadora'));
 
-console.log(string + ' ' + num)
+  if (isNaN(input)) {
+    alert('Ingrese un número válido');
+  };
+
+  for (let i = 0; i <= 10; i++) {
+    let mult = input * i;
+    console.log(`${input} x ${i} = ${mult}`);
+  };
+  input;
+} while (isNaN(input));
