@@ -13,8 +13,10 @@ body {
 }
 
 main {
+    height: 100vh;
     display: flex;
     flex-flow: column nowrap;
+    justify-content: center;
 }
 
 .title {
@@ -25,7 +27,7 @@ main {
 
 .text {
     font-size: 1.4rem;
-    margin: .3rem 2rem;
+    margin: .6rem 2rem;
 }
 
 .highlight {
