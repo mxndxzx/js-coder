@@ -1,63 +1,110 @@
 // Variables
 let input;
+let opt;
+let addInput;
 
-// Clases
-class Bass {
-  constructor(brand,model,color,year,serial,price){
-    this.brand = brand;
-    this.model = model;
-    this.color = color;
-    this.year = year;
-    this.serial = serial;
-    this.price = price;
-  };
-};
+// Arrays
+let market = ["huevos", "carne", "pollo", "galletitas", "harina"];
+let fruits = ["bananas", "paltas", "kiwis", "manzanas", "naranjas"];
+let library = ["lapiceras", "lápices", "cuadernos", "marcadores", "hojas"];
 
-// Productos
-const bajo1 = new Bass("Fender","Jazz Bass","Sunburst",1968,130173,8000);
-const bajo2 = new Bass("Fender","Jazz Bass American Standard Fretless","Sunburst",1992,451234,2700);
-const bajo3 = new Bass("Music Man","Sabre","Walnut",1979,0036502,3800);
-const bajo4 = new Bass("Gibson","EB-3","Cherry Red",1969,0456670,3700);
-
-// Call resultado total de productos
-const result = total(bajo1.price, bajo2.price, bajo3.price, bajo4.price);
-
-// Funcion total
-function total(p1,p2,p3,p4){
-  let sum = p1 + p2 + p3 + p4;
-  let iva = (sum * 21)/100;
-  let result = iva + sum;
-  alert(`Total + IVA: U$D ${result}. Presione aceptar para ver opciones de pago`);
-  return result;
-};
-
-// Call intereses de cuotas
-pay();
-
-// Funciones de pago
-function pay() {
+// Funciones
+let start = () => {
   do {
-    input = parseInt(prompt("Introduzca la cantidad de cuotas que desee. El mínimo es 1 y el máximo 18"));
-    if (isNaN(input) || (((input < 1) || (input > 18)))) {
-      alert('Ingrese un número válido. El mínimo es 1 y el máximo 18');
-    };
-  } while (isNaN(input) || (((input < 1) || (input > 18))));
-  if (input == 1) {
-    onePay();
-  } else {
-    multPay(input, result);
+    input = parseInt(prompt
+      ("Las listas son: \n\n"
+      + "1. Supermercado:  " + market.join(", ") + "\n\n"
+      + "2. Frutas:  " + fruits.join(", ") + "\n\n"
+      + "3. Librería:  " + library.join(", ") + "\n\n"
+      + "Para agregar o quitar un elemento, seleccione una lista (1, 2, 3)"
+      ));
+
+      if (isNaN(input) || (input < 1) || (input > 3)) {
+        alert("Ingrese un número válido");
+      };}
+  while (isNaN(input) || (input < 1) || (input > 3));
+
+  switch (input) {
+    case 1 :
+      option(market);
+      break;
+    case 2 :
+      option(fruits);
+      break;
+    case 3 :
+      option(library);
+      break;
+    default:
+      alert("Opción incorrecta");
+      start();
   };
 };
 
-function onePay() {
-  let onePay = result - ((result * 20) / 100);
-  alert(`El precio en 1 pago, con 20% de descuento, es de U$D ${onePay}`);
+let option = (arrName) => {
+  do {
+    opt = parseInt(prompt(
+      "La lista seleccionada contiene:  " + arrName.join(", ") + "\n\n"
+      + "1. Agregar elementos \n"
+      + "2. Quitar elementos"
+    ));
+
+    if ((opt < 1 ) || (opt > 2)) {
+      alert("Ingrese un número válido");
+    };}
+  while ((opt < 1) || (opt > 2));
+
+  switch (opt) {
+    case 1 :
+      add(arrName);
+      break;
+    case 2 :
+      sus(arrName);
+      break;
+    default:
+      alert("Opción incorrecta");
+  };
 };
 
-function multPay(payNum, price) {
-  let initFee = 3.17;
-  let endFee = (payNum * initFee);
-  let interest = price + ((price * endFee) / 100);
-  let total = interest / payNum;
-  alert(`El precio final es de U$D ${Math.round(interest)}, que pueden ser pagados en ${payNum} cuotas de U$D ${Math.round(total)} (Interés del ${endFee}%)`);
-};
+let add = (arrName) => {
+  addInput = prompt(
+    "Ingrese los elementos que desee agregar, separados por comas: "
+  );
+
+  let replaceArr = addInput.replace(/\s+/g, "");
+  let splitArr = replaceArr.split(",");
+  splitArr.forEach(items);
+  function items(item) {
+    arrName.push(item);
+  };
+
+  alert(
+    "Lista actualizada: \n"
+    + arrName.join(", "));
+  start();
+}
+
+let sus = (arrName) => {
+  susInput = prompt(
+    "Ingrese los elementos que desee eliminar, separados por comas: "
+  );
+
+  let replaceArr = susInput.replace(/\s+/g, "");
+  const splitArr = replaceArr.split(",");
+  splitArr.forEach(items);
+  function items(item) {
+    let index = arrName.indexOf(item);
+    if (index > -1) {
+      arrName.splice(index, 1);
+    } else {
+      alert("No se encontró un elemento. No se hicieron modificaciones");
+    }
+  };
+
+  alert(
+    "Lista actualizada: \n"
+    + arrName.join(", "));
+  start();
+}
+
+// Call
+start();
