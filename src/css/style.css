@@ -10,13 +10,35 @@ body {
     font-family: 'Overpass', sans-serif;
     background-color: #FFFAF4;
     color: #030207;
+    font-size: 1.4rem;
 }
 
 main {
-    height: 100vh;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
+}
+
+ul li {
+    list-style: none;
+    margin: .5rem 0;
+}
+
+.hero {
+    height: 30vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+.activity {
+    height: 65vh;
+    margin: 1.4rem 20rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem 10rem;
 }
 
 .title {
@@ -26,7 +48,6 @@ main {
 }
 
 .text {
-    font-size: 1.4rem;
     margin: .6rem 2rem;
 }
 
@@ -37,4 +58,57 @@ main {
     font-family: 'Consolas', sans-serif;
     font-weight: 600;
     color: cadetblue;
+}
+
+.box {
+    background-color: antiquewhite;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 6px 6px 6px 0px rgba(0,0,0,0.16);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-items: center;
+    align-items: flex-start;
+}
+
+.box h2 {
+    font-family: 'Rubik', sans-serif;
+    margin-bottom: 10px;
+}
+
+input[type=text] {
+    height: 6rem;
+    margin-top: 50px;
+    width: auto;
+    border: none;
+    border-radius: 10px;
+    padding: .2rem 1rem;
+    background-color: #FFFAF4;
+    color: #030207;
+    font-size: inherit;
+}
+
+input:focus {
+    outline: none;
+}
+
+input::placeholder {
+    position: absolute;
+    color: #BBB;
+    font-family: 'Rubik', sans-serif;
+    word-wrap: normal;
+    font-size: 1rem;
+}
+
+input[type=button] {
+    width: 50%;
+    border-radius: 10px;
+    border: none;
+    padding: .4rem;
+    margin-top: 1rem;
+    font-family: 'Rubik', sans-serif;
+    font-size: inherit;
+    background-color: cadetblue;
+    color: #FFFAF4;
+    align-self: center;
 }
